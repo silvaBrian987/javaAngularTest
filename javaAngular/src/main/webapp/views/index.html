@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+<script src="./resources/libs/angular.min.js"></script>
+<script src="./views/app/beans.js"></script>
+<script src="./views/app/script.js"></script>
+</head>
+
+<body ng-controller="UsuarioController">
+	<form>
+		<fieldset>
+			<legend>Datos de usuario</legend>
+			<label for="nombre">Nombre: </label><input id="nombre" name="nombre" type="text" ng-model="usuario.nombre" /><br>
+			<label for="apellido">Apellido: </label><input id="apellido" name="apellido" type="text" ng-model="usuario.apellido" /><br>
+			<label for="sexo">Sexo: </label><select id="sexo" name="sexo" type="checkbox" ng-model="seguro.sexo" ><option value="">--Elige opcion--</option><option value="H">Hombre</option><option value="M">Mujer</option></select><br>
+			<label for="fechaAlta">Fecha de alta: </label><input id="fechaAlta" name="fechaAlta" type="text" ng-model="usuario.fechaAlta" /><br>
+			<label for="tieneGrupo">Tiene grupo: </label><input id="tieneGrupo" name="tieneGrupo" type="checkbox" ng-model="usuario.tieneGrupo" /><br>
+			<label for="grupo">Grupo: </label><select ng-disabled="usuario.tieneGrupo===false" id="grupo" name="grupo" type="checkbox" ng-model="usuario.grupo.nombre" ><option value="">--Elige opcion--</option><option value="g1">Grupo 1</option></select><br>
+		</fieldset>
+		<fieldset ng-hide="usuario.grupo.nombre===''">
+			<legend>Grupo</legend>
+			<label for="nombre">Nombre: </label><input id="nombre" name="nombre" type="text" ng-model="usuario.grupo.nombre" /><br>
+		</fieldset>
+		<input type="button" ng-click="cargarPersonaDesdeServidor()" value="Cargar persona desde servidor" />
+	</form>
+</body>
+
+</html>
