@@ -15,10 +15,11 @@ public class UtilesJSON {
 
 		for (Method m : o.getClass().getMethods()) {
 			String suffix = m.getName().substring(0, 3).toLowerCase();
-			if (suffix.toLowerCase().equals("get")) {
+			if (suffix.toLowerCase().equals("get") || suffix.toLowerCase().equals("is")) {
 				if (m.getParameterTypes().length == 0) {
-					String name = m.getName().toLowerCase();
+					String name = m.getName();
 					name = name.substring(3, name.length());
+					name = name.substring(0,1).toLowerCase() + name.substring(1, name.length());
 					try {
 						// json.append("\"" + name + "\":\"" + m.invoke(o, null)
 						// + "\"");

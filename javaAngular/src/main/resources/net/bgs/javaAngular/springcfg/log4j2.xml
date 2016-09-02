@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="ERROR">
+	<Properties>
+		<!-- <Property name="LOG_DIR">${sys:web.root}/logs</Property> -->
+		<Property name="LOG_DIR">C:\java\logs</Property>
+		<Property name="FILENAME">remesasNumerarios.log</Property>
+		<Property name="ARCHIVE">${LOG_DIR}\archive</Property>
+		<Property name="PATTERN">%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
+	</Properties>
+	<Appenders>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="${PATTERN}" />
+		</Console>
+		<RollingFile name="ROLLING_FILE" fileName="${LOG_DIR}\${FILENAME}" filePattern="${ARCHIVE}\${FILENAME}.%d{yyyy-MM-dd-hh-mm}.gz">
+			<PatternLayout pattern="${PATTERN}" />
+			<TimeBasedTriggeringPolicy />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Root level="TRACE">
+			<!-- <AppenderRef ref="ROLLING_FILE" level="DEBUG" /> -->
+			<AppenderRef ref="STDOUT" level="INFO" />
+		</Root>
+	</Loggers>
+</Configuration>
